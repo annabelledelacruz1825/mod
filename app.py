@@ -26,15 +26,20 @@ api_key = st.secrets["openai_secret"]
 
 # Initialize the OpenAI client with the API key from secrets
 client = OpenAI(api_key=api_key)
-
+# .streamlit/config.toml
+[theme]
+primaryColor = "#f63366"
+backgroundColor = "#87CEEB"
+textColor = "#000000"
 # Streamlit UI components
 st.title('''Anna, It isn't work if you love what you do''')
 
 user_input = st.text_area("Enter text to moderate")
-
+st.set_page_config(page_title="Streamlit web app", layout='wide')
 if st.button('Moderate'):
     response = client.moderations.create(input=user_input)
     output = response.results[0]
     serialized_output = serialize(output)
     json_output = json.dumps(serialized_output, indent=2, ensure_ascii=False)
     st.json(json_output)
+uploaded_files = st.file_uploader("Upload files", type=["pdf", "doc", "txt"], accept_multiple_files=True)
