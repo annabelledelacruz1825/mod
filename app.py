@@ -27,7 +27,7 @@ api_key = st.secrets["openai_secret"]
 # Initialize the OpenAI client with the API key from secrets
 client = OpenAI(api_key=api_key)
 # .streamlit/config.toml
-[theme]
+
 primaryColor = "#f63366"
 backgroundColor = "#87CEEB"
 textColor = "#000000"
